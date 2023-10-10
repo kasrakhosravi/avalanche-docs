@@ -234,19 +234,6 @@ if [ "$#" != 0 ]; then
 fi
 
 echo "Preparing environment..."
-osType=$(getOsType)
-if [ "$osType" = "Debian" ]; then
-  check_reqs_deb
-elif [ "$osType" = "RHEL" ]; then
-  check_reqs_rhel
-else
-  #sorry, don't know you.
-  echo "Unsupported linux flavour/distribution: $osType"
-  echo "Exiting."
-  exit
-fi
-foundIP="$(dig +short myip.opendns.com @resolver1.opendns.com)"
-foundArch="$(uname -m)"                         #get system architecture
 foundOS="$(uname)"                              #get OS
 if [ "$foundOS" != "Linux" ]; then
   #sorry, don't know you.
@@ -254,6 +241,19 @@ if [ "$foundOS" != "Linux" ]; then
   echo "Exiting."
   exit
 fi
+osType=$(getOsType)
+if [ "$osType" = "Debian" ]; then
+  check_reqs_deb
+elif [ "$osType" = "RHEL" ]; then
+  check_reqs_rhel
+else
+  #sorry, don't know you.
+  echo "Unsupported OS or Linux distribution: $osType"
+  echo "Exiting."
+  exit
+fi
+foundIP="$(dig +short myip.opendns.com @resolver1.opendns.com)"
+foundArch="$(uname -m)"                         #get system architecture
 if [ "$foundArch" = "aarch64" ]; then
   getArch="arm64"                               #we're running on arm arch (probably RasPi)
   echo "Found arm64 architecture..."
