@@ -538,7 +538,7 @@ Note: on Fuji Testnet, the URL is `wss://subnets.avax.network/dexalot/testnet/ws
 
 [eRPC](https://github.com/erpc/erpc) is a fault-tolerant EVM RPC proxy and re-org aware permanent caching solution. It is built with read-heavy use-cases in mind such as data indexing and high-load frontend usage.
 
-# Quick start
+# Quickstart
 
 1. Create your [`erpc.yaml`](https://docs.erpc.cloud/config/example) configuration file:
 
